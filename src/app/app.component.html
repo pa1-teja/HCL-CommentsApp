@@ -1,0 +1,80 @@
+<html>
+
+<head>
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<div class="form-group container">
+  <label for="person_name">Name:</label>
+  <input class="form-control input-sm" #usrName type="text">
+  <label for="comment">Comment:</label>
+  <textarea class="form-control" #newComment rows="5" id="comment"></textarea>
+</div>
+<div class="container">
+<button type="button" (click)="cmtInput(newComment.value, usrName.value)" class="btn btn-primary">POST</button>
+</div>
+
+<div class="container" *ngFor="let item of allMainComments; let i = index">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a *ngFor="let user of allUsrNames"><b>{{user}}</b></a>
+                            made a post.
+                        </div>
+                        <h6 class="text-muted time">
+                           {{hoursDisplay ? hoursDisplay : '00'}} : {{(minutesDisplay) && (minutesDisplay <= 59) ? minutesDisplay : '00'}} : {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}}
+                        </h6>
+                    </div>
+                </div> 
+                <div class="post-description"> 
+                    <p> {{item}} </p>
+                    <div class="stats">
+                        <a href="#" (click)="noOfLikesMenthod(noOfLikes, i)" class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-up icon"></i>{{noOfLikes}}
+                        </a>
+                        <a href="#" class="btn btn-default stat-item" (click)="noOfDislikesMethod(noOfDislikes,i)">
+                            <i class="fa fa-thumbs-down icon" ></i>{{noOfDislikes}}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+
+
+<!-- <div class="container">
+  <div class="dialogbox">
+
+   <textarea #newComment ngModel="string" name="string" required ngRequired="string" ngMinlength="1" ngMaxlength="2000" ngPattern="string" ngChange="string"></textarea>
+    
+    <button (click)="cmtInput(newComment.value)">POST</button>
+  </div>
+
+<div class="container" *ngFor="let item of allMainComments; let i = index">
+  <div class="dialogbox">
+    <div class="body">
+      <span class="tip tip-left"></span>
+      <div class="message"> 
+         <span> {{i}} .{{item}}</span>
+      </div>
+       <button (click)="replyToComment(i,item)" class="replyButton" id="reply_button">Reply</button>
+    </div>
+  </div>
+</div>  
+</div> -->
+</body>
+</html>
